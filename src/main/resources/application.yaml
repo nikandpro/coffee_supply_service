@@ -16,3 +16,16 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  data:
+    kafka:
+      bootstrap-servers: PLAINTEXT://localhost:9092
+      topic-name:
+        grain: grain
+
+server:
+  port: 8081
+
+logging:
+  level:
+    root: info
