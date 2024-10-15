@@ -3,8 +3,8 @@ package github.nikandpro.coffeesupplyservice.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "brigade")
-public class Roasting {
+@Table(name = "roasting")
+public class Roast {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,13 @@ public class Roasting {
     @JoinColumn(name = "brigade_id", nullable = false)
     private Brigade brigade;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
+    private CountryStats country;
+
+    @Column(name = "quantity_taken", nullable = false)
     private Integer quantityTaken;
 
-    @Column(nullable = false)
+    @Column(name = "weight_out", nullable = false)
     private Integer weightOut;
 }

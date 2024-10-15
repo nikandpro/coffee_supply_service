@@ -3,7 +3,7 @@ package github.nikandpro.coffeesupplyservice.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "brigade")
+@Table(name = "grain")
 public class Grain {
 
     @Id
@@ -13,8 +13,9 @@ public class Grain {
     @Column(nullable = false)
     private Integer weight;
 
-    @Column(nullable = false)
-    private String origin;
+    @ManyToOne
+    @JoinColumn(name = "origin_country", nullable = false)
+    private CountryStats countryStats;
 
     @Column(name = "robusta_percentage", nullable = false)
     private Double robustaPercentage;
@@ -23,6 +24,6 @@ public class Grain {
     private Double arabicaPercentage;
 
     @Column(name = "grain_type", nullable = false)
-    private String grainType; // VARCHAR
+    private String grainType;
 
 }

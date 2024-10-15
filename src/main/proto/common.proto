@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "github.nikandpro.roasting";
+option java_outer_classname = "GeneratorProto";
+option objc_class_prefix = "RTG";
+
+package service;
+
+import "google/protobuf/empty.proto";
+
+service RoastServer {
+  rpc AddRoastInfo (RoastRequest) returns (google.protobuf.Empty);
+
+  rpc AddRoastStreamInfo (stream RoastRequest) returns (google.protobuf.Empty);
+}
+
+message RoastRequest {
+  int64 id = 1;
+  int64 grain = 2;
+  string brigade = 3;
+  int64 country = 4;
+  int32 quantityTaken = 5;
+  int32 weightOut = 6;
+}

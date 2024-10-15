@@ -11,7 +11,4 @@ public class Brigade {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
-
-    @Column(name = "loss_percentage", nullable = false)
-    private Double lossPercentage;
 }

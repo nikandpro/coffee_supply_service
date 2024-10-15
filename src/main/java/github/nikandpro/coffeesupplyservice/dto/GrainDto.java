@@ -3,7 +3,7 @@ package github.nikandpro.coffeesupplyservice.dto;
 public record GrainDto(
         Long id,
         Integer weight,
-        String origin,
+        Long countryStats,
         Double robustaPercentage,
         Double arabicaPercentage,
         String grainType

@@ -3,7 +3,7 @@ package github.nikandpro.coffeesupplyservice.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "brigade")
+@Table(name = "country_stats")
 public class CountryStats {
 
     @Id
@@ -12,7 +12,4 @@ public class CountryStats {
 
     @Column(nullable = false)
     private String country;
-
-    @Column(name = "loss_percentage", nullable = false)
-    private Double lossPercentage;
 }
