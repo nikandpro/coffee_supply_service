@@ -5,7 +5,7 @@ import github.nikandpro.coffeesupplyservice.entity.Grain;
 import github.nikandpro.coffeesupplyservice.kafka.model.GrainEvent;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring", unmappedTargetPolicy = org.mapstruct.ReportingPolicy.IGNORE)
 public interface GrainMapper {
 
     Grain toEntity(GrainDto grainDto);

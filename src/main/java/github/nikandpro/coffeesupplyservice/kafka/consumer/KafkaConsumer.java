@@ -18,7 +18,7 @@ public class KafkaConsumer {
     private final GrainMapper grainMapper;
     private final GrainService grainService;
 
-    @KafkaListener(topics = "${spring.data.kafka.topic-name.likes}")
+    @KafkaListener(topics = "${spring.data.kafka.topic-name.grain}", groupId = "1")
     public void listener(GrainEvent grainEvent, Acknowledgment ack) {
         GrainDto grainDto = grainMapper.toDto(grainEvent);
         grainService.saveGrain(grainDto);
