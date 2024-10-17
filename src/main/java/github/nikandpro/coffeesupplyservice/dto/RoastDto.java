@@ -2,7 +2,7 @@ package github.nikandpro.coffeesupplyservice.dto;
 
 import java.util.UUID;
 
-public record RoasDto(
+public record RoastDto(
         Long id,
         Long grain,
         UUID brigade,
