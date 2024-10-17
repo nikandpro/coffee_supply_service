@@ -1,7 +1,10 @@
+import com.google.protobuf.gradle.*
+
 plugins {
     java
-    id("org.springframework.boot") version "3.3.4"
+    id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.6"
+    id("com.google.protobuf") version "0.8.18"
 }
 
 group = "github.nikandpro"
@@ -24,6 +27,14 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     /**
+     * gRPC
+     */
+    implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
+    implementation("io.grpc:grpc-protobuf:1.58.0")
+    implementation("io.grpc:grpc-stub:1.58.0")
+    compileOnly("jakarta.annotation:jakarta.annotation-api:1.3.5")
+
+    /**
      * Database
      */
     implementation("org.liquibase:liquibase-core")
@@ -35,8 +46,8 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
     implementation("org.slf4j:slf4j-api:2.0.5")
     implementation("ch.qos.logback:logback-classic:1.4.6")
-    implementation("org.projectlombok:lombok:1.18.26")
-    annotationProcessor("org.projectlombok:lombok:1.18.26")
+    implementation("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 
@@ -67,4 +78,31 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.19.2"
+    }
+    plugins {
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.46.0"
+        }
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.plugins {
+                id("grpc")
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs("build/generated/source/proto/main/grpc")
+            srcDirs("build/generated/source/proto/main/java")
+        }
+    }
 }
