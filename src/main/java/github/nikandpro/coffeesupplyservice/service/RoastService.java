@@ -16,6 +16,7 @@ public class RoastService {
     private final RoastMapper roastMapper;
 
     public void save(RoastDto roastDto) {
+        validateRoast(roastDto);
         roastRepository.save(roastMapper.toEntity(roastDto));
         log.info("save Roast");
     }

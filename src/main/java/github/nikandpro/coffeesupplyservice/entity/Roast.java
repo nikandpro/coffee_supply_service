@@ -1,6 +1,5 @@
 package github.nikandpro.coffeesupplyservice.entity;
 
-import com.github.grpccommon.RoastRequest;
 import jakarta.persistence.*;
 
 @Entity
