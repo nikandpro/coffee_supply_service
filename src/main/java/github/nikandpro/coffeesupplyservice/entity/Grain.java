@@ -1,7 +1,9 @@
 package github.nikandpro.coffeesupplyservice.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "grain")
 public class Grain {
@@ -13,9 +15,8 @@ public class Grain {
     @Column(nullable = false)
     private Integer weight;
 
-    @ManyToOne
     @JoinColumn(name = "origin_country", nullable = false)
-    private CountryStats countryStats;
+    private Long countryStats;
 
     @Column(name = "robusta_percentage", nullable = false)
     private Double robustaPercentage;
