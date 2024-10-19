@@ -21,7 +21,7 @@ public class RoastService {
         log.info("save Roast");
     }
 
-    private void validateRoast(RoastDto roastDto) {
+    protected void validateRoast(RoastDto roastDto) {
         if (roastDto == null) {
             log.info("roast is null");
             throw new NullPointerException("roastDto is null");

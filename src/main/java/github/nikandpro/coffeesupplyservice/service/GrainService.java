@@ -17,7 +17,7 @@ public class GrainService {
     private final GrainMapper grainMapper;
 
     public void saveGrain(GrainDto grainDto) {
-//        validateGrain(grainDto);
+        validateGrain(grainDto);
         Grain grain = grainMapper.toEntity(grainDto);
         grainRepository.save(grain);
     }

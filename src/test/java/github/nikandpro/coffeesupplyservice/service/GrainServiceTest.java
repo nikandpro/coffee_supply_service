@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,31 +28,25 @@ public class GrainServiceTest {
 
     private GrainDto grainDto;
 
+    //
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
         grainDto = new GrainDto(1L, 60, 1L, 70.0, 20.0, "A");
     }
 
     @Test
     public void testSaveGrain() {
+
         // Arrange
         Grain grain = new Grain();
-        grain.setId(1L);
-        grain.setWeight(60);
-        grain.setArabicaPercentage(70.0);
-        grain.setRobustaPercentage(30.0);
-        grain.setCountryStats(1L);
-        grain.setGrainType("A");
-//        Mockito.when(grainMapper.toEntity(any())).thenReturn(grain);
-        GrainDto grainDto1 = new GrainDto(2L, 60, 2L, 60.0, 40.0, "B");
-        Mockito.when(grainMapper.toEntity(eq(grainDto1))).thenReturn(grain);
+
+        when(grainMapper.toEntity(any())).thenReturn(grain);
 
         // Act
-        grainService.saveGrain(grainDto1);
+        grainService.saveGrain(grainDto);
 
         // Assert
-        verify(grainMapper).toEntity(any(GrainDto.class));
+        verify(grainMapper).toEntity(any());
         verify(grainRepository).save(any());
     }
 
