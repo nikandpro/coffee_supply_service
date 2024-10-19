@@ -26,6 +26,5 @@ public interface RoastRepository extends JpaRepository<Roast, Integer> {
                 SELECT r FROM roasting r
                 WHERE r.country_id IN :n
             """)
-    List<Roast> findAllGrainByCountries(@Param("n") List<Long> countriesId);
-
+    List<Roast> findByCountryStats(@Param("n") List<String> countries);
 }
