@@ -182,7 +182,7 @@ public class InfoCoffeeServiceTest {
         List<CountryStats> countries = Arrays.asList(countryStats1);
 
         when(countryStatsRepository.findAll()).thenReturn(countries);
-        when(roastRepository.findAllGrainByCountries(anyList())).thenReturn(Arrays.asList(roast1));
+        when(roastRepository.findAllGrainByCountryStats(anyList())).thenReturn(Arrays.asList(roast1));
 
         // Act
         List<CountryDto> result = infoCoffeeService.getCountryLosses();

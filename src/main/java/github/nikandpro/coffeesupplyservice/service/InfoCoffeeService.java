@@ -52,7 +52,6 @@ public class InfoCoffeeService {
                 .toList());
     }
 
-    // некрасиво, но один запрос в бд
     @Transactional
     public List<BrigadeDto> getBrigadeLosses() {
         List<BrigadeDto> brigadeDtos = new ArrayList<>();
@@ -73,13 +72,12 @@ public class InfoCoffeeService {
         return brigadeDtos;
     }
 
-    // один запрос в бд
     @Transactional
     public List<CountryDto> getCountryLosses() {
         List<CountryDto> countryDtos = new ArrayList<>();
         List<CountryStats> countryStats = countryStatsRepository.findAll();
 
-        List<Roast> roasts = roastRepository.findAllGrainByCountries(countryStats.stream()
+        List<Roast> roasts = roastRepository.findAllGrainByCountryStats(countryStats.stream()
                 .map(CountryStats::getId)
                 .toList());
 
@@ -94,7 +92,7 @@ public class InfoCoffeeService {
         return countryDtos;
     }
 
-    public Double foundLossPercentage(List<Roast> roasts) {
+    private Double foundLossPercentage(List<Roast> roasts) {
         int sumQuantityTaken = roasts.stream().mapToInt(Roast::getQuantityTaken).sum();
         int sumWeightOut = roasts.stream().mapToInt(Roast::getWeightOut).sum();
 
